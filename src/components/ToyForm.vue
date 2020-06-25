@@ -16,7 +16,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="submitForm">Agregar</v-btn>
+          <v-btn color="primary" @click="submitForm">Agregar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -29,8 +29,13 @@ export default {
   methods: {
     ...mapActions(['displayToyForm', 'hideToyForm', 'updateCode', 'updateName', 'updateStock', 'updatePrice', 'postToy']),
     submitForm() {
-      this.postToy()
-      this.hideToyForm();
+      let confirmation = confirm(`Estas seguro de agregar este producto?`)
+      if(confirmation){
+        this.postToy()
+        alert('Tu producto se ha agregado exitosamente')
+        this.hideToyForm();
+      }
+      
     },
   },
   computed: {
