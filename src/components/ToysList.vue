@@ -27,13 +27,17 @@
 import { mapState, mapActions } from 'vuex'
     export default {
       methods:{
-          ...mapActions(['setToys','deleteToy']),
+          ...mapActions(['setToys','deleteToy', 'setCurrentToy', 'displayToyForm']),
           removeToy(id){
             let confirmation = confirm(`Estas seguro de eliminar este producto?`)
             if(confirmation){
               this.deleteToy(id)
               alert('Tu producto se ha eliminado exitosamente')
             }
+          },
+          editToy(id){
+            this.setCurrentToy(id)
+            this.displayToyForm()
           }
         },
       computed:{

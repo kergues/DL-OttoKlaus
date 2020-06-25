@@ -16,7 +16,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="submitForm">Agregar</v-btn>
+          <v-btn color="primary" @click="cancelForm">Cancelar</v-btn>
+          <v-btn color="success" @click="submitForm">{{!!currentToy.id ? 'Actualizar': 'Crear'}}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -27,16 +28,17 @@
 import { mapState, mapActions } from "vuex";
 export default {
   methods: {
-    ...mapActions(['displayToyForm', 'hideToyForm', 'updateCode', 'updateName', 'updateStock', 'updatePrice', 'postToy']),
+    ...mapActions(['displayToyForm', 'hideToyForm', 'updateCode', 'updateName', 'updateStock', 'updatePrice', 'postToy', 'updateToy', 'cancelForm']),
     submitForm() {
-      let confirmation = confirm(`Estas seguro de agregar este producto?`)
-      if(confirmation){
-        this.postToy()
-        alert('Tu producto se ha agregado exitosamente')
-        this.hideToyForm();
+      if(this.currentToy.id){
+        this.updateToy(this.currentToy.id)
+        } else {
+          this.postToy()
+          alert('Tu producto se ha agregado exitosamente')
+        }
+        this.hideToyForm()
       }
     },
-  },
   computed: {
     ...mapState(['showForm', 'currentToy'])
   },
