@@ -35,7 +35,6 @@ export default {
         alert('Tu producto se ha agregado exitosamente')
         this.hideToyForm();
       }
-      
     },
   },
   computed: {
