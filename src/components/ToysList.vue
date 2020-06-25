@@ -36,8 +36,11 @@ import { mapState, mapActions } from 'vuex'
             }
           },
           editToy(id){
-            this.setCurrentToy(id)
-            this.displayToyForm()
+            let confirmation = confirm('Estas seguro de editar este producto?')
+            if(confirmation){
+              this.setCurrentToy(id)
+              this.displayToyForm()
+            }
           }
         },
       computed:{
@@ -46,8 +49,6 @@ import { mapState, mapActions } from 'vuex'
         created(){
           this.setToys()
         }
-      
-        
     }
 </script>
 

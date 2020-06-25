@@ -32,6 +32,7 @@ export default {
     submitForm() {
       if(this.currentToy.id){
         this.updateToy(this.currentToy.id)
+        alert('Tu producto se ha modificado exitosamente')
         } else {
           this.postToy()
           alert('Tu producto se ha agregado exitosamente')
